@@ -20,6 +20,10 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the homepage!")
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -40,4 +44,6 @@ urlpatterns = [
     path('institutions/', include('institutions.urls')),
     path('links/', include('links.urls')),
     path('questionnaire/', include('questionnaire.urls')),
+    path('', home, name='home'), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
