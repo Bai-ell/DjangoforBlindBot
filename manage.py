@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import django
 from django.core.management import execute_from_command_line
 
 def create_superuser():
@@ -19,9 +20,11 @@ def create_superuser():
 
 def main():
     """Run administrative tasks."""
+    # Устанавливаем DJANGO_SETTINGS_MODULE перед импортом любых Django-объектов
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+    
     try:
-        import django
+        # Инициализируем Django
         django.setup()  # Инициализация Django
     except ImportError as exc:
         raise ImportError(
