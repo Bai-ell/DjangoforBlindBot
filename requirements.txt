@@ -65,6 +65,7 @@ pickleshare==0.7.5
 Pillow==10.0.1
 prompt-toolkit==3.0.43
 psycopg2==2.9.9
+psycopg2-binary==2.9.10
 ptyprocess==0.7.0
 pure-eval==0.2.2
 pydantic==2.7.4
