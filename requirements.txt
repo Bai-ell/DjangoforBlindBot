@@ -13,6 +13,7 @@ attrs==23.1.0
 backcall==0.2.0
 billiard==4.2.0
 bleach==6.1.0
+cachalot==1.5.0
 celery==5.4.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
@@ -33,6 +34,7 @@ django-phonenumber-field==7.1.0
 django-redis==5.4.0
 djangorestframework==3.14.0
 djangorestframework-jwt==1.11.0
+djangorestframework-simplejwt==5.3.1
 drf-spectacular==0.26.5
 drf-spectacular-sidecar==2023.10.1
 drf-yasg==1.21.7
@@ -45,6 +47,7 @@ idna==3.6
 inflection==0.5.1
 ipython==7.31.1
 jedi==0.19.1
+jsonpickle==4.0.0
 jsonschema==4.19.1
 jsonschema-specifications==2023.7.1
 kombu==5.3.7
@@ -81,6 +84,8 @@ setuptools==75.6.0
 six==1.16.0
 sqlparse==0.5.0
 stack-data==0.6.3
+tinydb==4.8.2
+tinydb-smartcache==2.0.0
 traitlets==5.14.2
 typing_extensions==4.8.0
 tzdata==2024.1

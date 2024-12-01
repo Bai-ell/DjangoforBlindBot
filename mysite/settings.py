@@ -27,7 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rc^*w^w&6g9_(uvx#6s*bnt!w)l0rdi%!l7mv#y%uc&x%wo5pk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False") == "True"
+
 
 
 
@@ -50,6 +51,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
+    'django_filters',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django_celery_results',
+    'drf_api_logger',
 
     'buttons',
     'institutions',
@@ -160,3 +168,28 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+
+CACHALOT = {
+    'ENABLED': True,
+    'TIMEOUT': 60*15,  # время кеширования в секундах
+}
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+
+DRF_API_LOGGER = {
+    'LOGGING_ENABLED': True,
+}
