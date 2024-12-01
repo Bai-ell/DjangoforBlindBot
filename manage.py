@@ -3,10 +3,12 @@
 import os
 import sys
 import django
-from django.core.management import execute_from_command_line
 
 def create_superuser():
-    from django.contrib.auth.models import User  # Импортируем модель после настройки Django
+    """Создание суперпользователя"""
+    # Импортируем модели только после настройки Django
+    from django.contrib.auth.models import User
+
     username = "admin5"
     email = "admin5@example.com"
     password = "5"
@@ -20,12 +22,12 @@ def create_superuser():
 
 def main():
     """Run administrative tasks."""
-    # Устанавливаем DJANGO_SETTINGS_MODULE перед импортом любых Django-объектов
+    # Устанавливаем DJANGO_SETTINGS_MODULE перед импортом Django
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
-    
+
     try:
-        # Инициализируем Django
-        django.setup()  # Инициализация Django
+        # Настраиваем Django перед использованием его API
+        django.setup()
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "
@@ -33,10 +35,11 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
-    # Теперь, когда Django настроен, создадим суперпользователя
+    # После настройки Django вызываем функцию создания суперпользователя
     create_superuser()
 
-    # Запуск административных команд Django
+    # Выполняем стандартные команды Django
+    from django.core.management import execute_from_command_line
     execute_from_command_line(sys.argv)
 
 
