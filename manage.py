@@ -4,23 +4,6 @@ import os
 import sys
 
 
-from django.contrib.auth.models import User
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
-
-
-def create_superuser():
-    username = "admin5"
-    email = "admin5@example.com"
-    password = "5"
-
-    if not User.objects.filter(username=username).exists():
-        User.objects.create_superuser(username=username, email=email, password=password)
-        print("Суперпользователь создан")
-    else:
-        print("Суперпользователь уже существует")
-
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
