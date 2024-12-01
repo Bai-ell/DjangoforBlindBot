@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
+from urllib.parse import urlparse
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -115,16 +116,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         'PORT': os.getenv("PGPORT"),          
 #     }
 # }
-
-
+DATABASE_URL  = 'postgresql://postgres:pjzxlXJZnQbgJzuMvAtwloBedZyPInod@autorack.proxy.rlwy.net:49981/railway'
+url = urlparse(DATABASE_URL)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'pjzxlXJZnQbgJzuMvAtwloBedZyPInod',
-        'HOST': 'postgres-c_7e.railway.internal',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': url.path[1:],  # Имя базы данных (после "/")
+        'USER': url.username,  # Имя пользователя
+        'PASSWORD': url.password,  # Пароль
+        'HOST': url.hostname,  # Хост (может быть IP-адрес)
+        'PORT': url.port,  # Порт (по умолчанию 5432)
     }
 }
 
