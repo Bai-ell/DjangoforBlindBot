@@ -21,23 +21,30 @@ from drf_yasg import openapi
 from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
+from dj_rest_auth.views import LoginView, LogoutView
+
 
 def home(request):
     return HttpResponse("Welcome to the homepage!")
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="DASTBEK",
-        description='Dastbek',
-        default_version='v1'
+        title="My API",
+        default_version='v1',
+        description="API documentation",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@myapi.local"),
+        license=openapi.License(name="BSD License"),
     ),
-    public=True
+    public=True,
 )
 
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('auth/login/', LoginView.as_view(), name='rest_login'),
+    path('auth/logout/', LogoutView.as_view(), name='rest_logout'),
     path('docs/', schema_view.with_ui('swagger')),
     path('buttons/', include('buttons.urls')),
     path('botwords/', include('botwords.urls')),
